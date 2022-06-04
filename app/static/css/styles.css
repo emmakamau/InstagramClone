@@ -3,4 +3,84 @@
 font-family: 'Cosmopolitan Script', sans-serif;
 font-family: 'Work Sans', sans-serif;
 */
-                
+
+/* Main style settings */
+body{
+    padding: 0;
+    margin: 0;
+    /* overflow-x: hidden; */
+    background-color: #FAF9F6;
+    font-family: 'Work Sans', sans-serif;
+}
+
+.instagram-title{
+    font-family: 'Cosmopolitan Script', sans-serif;
+    font-weight: bolder;
+    font-size: 3rem;
+}
+
+.message{
+    margin: 1rem;
+    padding: .5rem;
+}
+
+/* Accounts pages - login and signin */
+.accounts-page{
+    margin-top: 6vh;
+}
+.ig-image-accounts{
+    display: block;
+    margin-left: auto;
+}
+.account-nav{
+    border: 1px solid #DCDCDC;
+    margin-top: 2vh;
+    width: 60%;
+    padding: 2vw;
+}
+.separator::before,.separator::after {
+    display: inline-block;
+    content: "";
+    border-top: 1px solid black;
+    width: 4rem;
+    margin:-0.5rem 1rem;
+    transform: translateY(-1rem);
+    opacity: 0.5;
+}
+.accounts-submit{
+    margin: 1rem;
+    padding: .5rem;
+    border-radius: 3%;
+    width: 85%;
+    font-weight: bold;
+}
+
+    /* Login-page */
+    .login-section{
+        border: 1px solid #DCDCDC;
+        width: 60%;
+        margin-top: 2vh;
+        background-color: white;
+    }
+    .login-form{
+        width: 90%;
+        margin: 2vh auto;
+    }
+    .accounts-username, .accounts-password {
+        background: transparent;
+        border: 0 solid;
+        border-radius: 1%;
+        border-bottom: 1px solid rgba(white, .5);
+        color: white;
+        display: block;
+        margin: 1rem;
+        padding: .5rem;
+        transition: 250ms ease-in;
+        width: calc(100% - 3rem);
+    }
+    
+    
+
+/* Profile page - User */
+
+/* Landing page - Pictures from other users,comments,likes etc */

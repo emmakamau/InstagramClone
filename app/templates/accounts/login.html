@@ -1,13 +1,39 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="row">
-    <div class="col-md-6">
-        {% load static %}
-        <img src="{% static 'css/assets/ig-landing-pg-img-1.png' %}" alt="" srcset="">
-        {% load static %}
-        <img src="{% static 'css/assets/ig-landing-pg-img-2.png' %}" alt="" srcset="">
+<div class="row accounts-page">
+    <div class="col-md-6 accounts-page-left" align="right">
+        <div class="row">
+            {% load static %}
+            <img src="{% static 'css/assets/accounts-img.jpg' %}" alt="ig-image-1" srcset="" class="ig-image-accounts">
+        </div>
     </div>
-    <div class="col-md-6"></div>
+    <div class="col-md-6 accounts-page-right">
+        <div class="login-section">
+            <br>
+            <h1 class="instagram-title text-center">Instagram</h1>
+            <form class="login-form" method="POST" action="">
+                {% csrf_token %}
+                <input type="text" name="username" class="accounts-username" autofocus="true" required="true"
+                    placeholder="Username" />
+                <input type="password" name="password" class="accounts-password" required="true"
+                    placeholder="Password" />
+                {% for message in messages%}
+                <span class="message">{{message}}</span>
+                {% endfor %}
+                <input type="submit" name="Login" value="Log In" class="accounts-submit btn-primary" /><br>
+            </form>
+            <div class="password-admin">
+                <h2 class="text-center font-weight-light separator">OR</h2>
+                <h6 class="text-center"><a href="#" class="font-weight-normal">Forgot password?</a></h6>
+                <br>
+            </div>
+        </div>
+        <div class="account-nav">
+            <h6 class="text-center">
+                Don't have an account? <a href="#">Sign Up</a>
+            </h6>
+        </div>
+    </div>
 </div>
 {% endblock %}
