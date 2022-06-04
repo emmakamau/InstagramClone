@@ -56,6 +56,13 @@ body{
 }
 
     /* Login-page */
+    .password-reset-pages{
+        width: 70%;
+        padding: 2vw;
+        top: 20%;
+        position: relative;
+        border: 1px solid #DCDCDC;
+    }
     .login-section{
         border: 1px solid #DCDCDC;
         width: 60%;
