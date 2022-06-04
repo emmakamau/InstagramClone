@@ -12,27 +12,30 @@
         <div class="login-section">
             <br>
             <h1 class="instagram-title text-center">Instagram</h1>
-            <p>Sign up to see photos and videos from your friends.</p>
+            <p class="text-center">Sign up to see photos and videos from your friends.</p>
             <form class="login-form" method="POST" action="">
                 {% csrf_token %}
-                <input type="text" name="username" class="accounts-username" autofocus="true" required="true"
-                    placeholder="Username" />
-                <input type="password" name="password" class="accounts-password" required="true"
-                    placeholder="Password" />
+                <div class="accounts-username" autofocus="true" required="true" placeholder="Email" >
+                    {{ form.username }}
+                </div>
+                <div class="accounts-email" autofocus="true" required="true" placeholder="Email" >
+                    {{ form.email }}
+                </div>
+                <div class="accounts-password" required="true" placeholder="Password">
+                    {{ form.password1}}
+                </div>
+                <div class="accounts-password" required="true" placeholder="Confirm Password">
+                    {{ form.password2}}
+                </div>
                 {% for message in messages%}
                 <span class="message">{{message}}</span>
                 {% endfor %}
-                <input type="submit" name="Login" value="Log In" class="accounts-submit btn-primary" /><br>
+                <input type="submit" name="SignUp" value="Sign Up" class="accounts-submit btn-primary" /><br>
             </form>
-            <div class="password-admin">
-                <h2 class="text-center font-weight-light separator">OR</h2>
-                <h6 class="text-center"><a href="#" class="font-weight-normal">Forgot password?</a></h6>
-                <br>
-            </div>
         </div>
         <div class="account-nav">
             <h6 class="text-center">
-                Don't have an account? <a href="#">Sign Up</a>
+                Have an account? <a href="#">Log In</a>
             </h6>
         </div>
     </div>

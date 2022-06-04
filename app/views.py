@@ -10,7 +10,7 @@ def homepage(request):
     context={}
     return render(request,'index.html',context=context)
 
-@unauthenticated_user
+#@unauthenticated_user
 def loginuser(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -20,14 +20,14 @@ def loginuser(request):
 
         if user is not None:
             login(request, user)
-            return redirect('home')
+            return redirect('homepage')
         else:
             messages.info(request, "Username or Password is incorrect")
             
     context = {}
     return render (request, 'accounts/login.html', context=context)
 
-@unauthenticated_user
+# @unauthenticated_user
 def signup(request):
     form = SignUpForm()
 
@@ -35,8 +35,6 @@ def signup(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
-            username = form.cleaned_data.get('username')
-            email = form.cleaned_data.get('email')
 
             messages.success(request, "Account created successfully")
             return redirect('login')
