@@ -1,6 +1,5 @@
-@import url('http://fonts.cdnfonts.com/css/cosmopolitan-script');
 /*
-font-family: 'Cosmopolitan Script', sans-serif;
+font-family: 'Grand Hotel', cursive;
 font-family: 'Work Sans', sans-serif;
 */
 
@@ -8,21 +7,90 @@ font-family: 'Work Sans', sans-serif;
 body{
     padding: 0;
     margin: 0;
-    /* overflow-x: hidden; */
     background-color: #FAF9F6;
     font-family: 'Work Sans', sans-serif;
 }
 
 .instagram-title{
-    font-family: 'Cosmopolitan Script', sans-serif;
-    font-weight: bolder;
-    font-size: 3rem;
+    font-family: 'Grand Hotel', cursive;
+    letter-spacing: 2px;
 }
 
 .message{
     margin: 1rem;
     padding: .5rem;
 }
+
+/* Navbar styling */
+.main-nav ul{
+    display: flex;
+    margin-right:8vw;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .main-nav a{
+    color: inherit;
+    text-decoration: none;
+    padding: 1rem;
+  }
+  
+  .main-nav a:hover{
+    font-size: larger;
+  }
+  
+  .main-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1vw;
+    height: 60px;
+    border-bottom: #DCDCDC solid 1px;
+  }
+
+  .brand-logo:hover{
+    text-decoration: none;
+    color: black;
+  }
+  
+  .brand-logo:focus{
+    text-decoration: none;
+    color: black;
+  }
+  
+  .brand-logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.25em;
+    color: inherit;
+    margin-left:8vw;
+    text-decoration: none;
+  }
+
+  .brand-logo-name {
+    margin-left: 1rem;
+    font-size:3rem;
+    text-decoration: none;
+  }
+  
+  .brand-logo-name:hover{
+    text-decoration: none !important;
+  }
+  
+  .brand-logo-name:focus{
+    text-decoration: none;
+  }
+
+  .nav-items{
+    font-size: large;
+    font-weight: bold;
+    padding: 0 1vw;
+  }
+
+  .search-text{
+      border-radius:2%;
+      background-color:#DCDCDC;
+  }
 
 /* Accounts pages - login and signin */
 .accounts-page{
@@ -91,4 +159,4 @@ body{
 
 /* Profile page - User */
 
-/* Landing page - Pictures from other users,comments,likes etc */
+/* Application page - Pictures from other users,comments,likes etc */

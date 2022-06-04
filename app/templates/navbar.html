@@ -1,0 +1,34 @@
+<header class="main-header">
+    <a href="{% url 'homepage' %}" class="brand-logo">
+        <h2 class="instagram-title">Instagram</h2>
+    </a>
+    <div>
+        <form action="/search/" method="post">
+            {% csrf_token %}
+            <div class="input-group mb-3">
+                <div class="input-group">
+                    <input type="text" class="form-control search-text" id="search-text" placeholder="Search">
+                    <button class="btn btn-light search" id="button-addon2" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <nav class="main-nav">
+        <ul>
+            <li class="nav-items"><a href="" >
+                {% load static %}
+                <img src="{% static 'css/assets/home-house-svgrepo-com.svg' %}" alt="" srcset="">
+            </a></li>
+            <li class="nav-items"><a href="" >
+                {% load static %}
+                <img src="{% static 'css/assets/add-svgrepo-com.svg' %}" alt="" srcset="">
+            </a></li>
+            <li class="nav-items"><a href="{% url 'logout' %}">
+                {% load static %}
+                <img src="{% static 'css/assets/logout-svgrepo-com.svg' %}" alt="" srcset="">
+            </a></li>
+        </ul>
+    </nav>
+</header>
