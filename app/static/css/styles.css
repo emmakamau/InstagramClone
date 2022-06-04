@@ -62,6 +62,7 @@ body{
         top: 20%;
         position: relative;
         border: 1px solid #DCDCDC;
+        background-color: white;
     }
     .login-section{
         border: 1px solid #DCDCDC;
