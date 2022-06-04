@@ -70,7 +70,7 @@ body{
         background: transparent;
         border: 0 solid;
         border-radius: 1%;
-        border-bottom: 1px solid rgba(white, .5);
+        border: 1px solid #DCDCDC;
         color: white;
         display: block;
         margin: 1rem;
