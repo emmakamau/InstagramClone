@@ -50,9 +50,12 @@ def homepage(request):
     all_posts = Post.objects.all()
     post_comments = Comment.objects.all()
 
+    comment_form = CommentForm()
+
     context={
         'all_posts':all_posts,
-        'post_comments':post_comments
+        'post_comments':post_comments,
+        'comment_form':comment_form
     }
     return render(request,'index.html',context=context)
 

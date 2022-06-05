@@ -32,7 +32,7 @@ class Post(models.Model):
 class Comment(models.Model):
     user = models.ForeignKey(User,null=True,on_delete=models.CASCADE)
     user_profile = models.ForeignKey(Profile,null=True,on_delete=models.CASCADE)
-    user_comment = models.TextField(blank=False, max_length=255)
+    user_comment = models.CharField(blank=False, max_length=255)
     post_associated = models.ForeignKey(Post,null=True,on_delete=models.CASCADE)
 
     def __str__(self):
