@@ -40,6 +40,11 @@ class PostUpdateForm(ModelForm):
             super(PostUpdateForm, self).__init__(*args, **kwargs)
             self.helper = FormHelper()
 
+class PostCreateForm(ModelForm):
+    class Meta:
+        model = Post
+        fields = ['image_upload','image_name','image_caption']
+
         
 
 

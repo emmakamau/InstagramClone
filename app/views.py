@@ -118,22 +118,30 @@ def profile_update(request,username):
     }
     return render(request,'profile_update.html',context=context)
 
+def post_create(request):
+    post_create_form = PostCreateForm()
+
+    context={
+        'post_create_form':post_create_form
+    }
+    return render(request,'post_create.html',context=context)
+
 def post_update(request,username):
     user_name = User.objects.get(username=username)
     user_profile = Profile.objects.get(user=user_name.id)
 
     data = get_object_or_404(Profile, id=user_profile.id)
-    post_form = PostUpdateForm(instance=data)
+    post_update_form = PostUpdateForm(instance=data)
 
     if request.method == "POST":
-        post_form = PostUpdateForm(request.POST, instance=data)
-        if post_form.is_valid():
-            post_form.save()
+        post_update_form = PostUpdateForm(request.POST, instance=data)
+        if post_update_form.is_valid():
+            post_update_form.save()
             return redirect ('homepage')
 
     context={
         'user_name':user_name,
-        'post_form':post_form,
+        'post_update_form':post_update_form,
         'user_profile':user_profile
     }
     return render(request,'post_update.html',context=context)
