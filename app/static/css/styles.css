@@ -21,6 +21,17 @@ body{
     padding: .5rem;
 }
 
+.app-links{
+    color: black;
+    text-decoration: none;
+}
+
+.app-links:hover{
+    color: black;
+    text-decoration: none;
+    font-size: large;
+}
+
 /* Navbar styling */
 .main-nav ul{
     display: flex;
@@ -236,3 +247,23 @@ body{
     }
 
 /* Application page - Pictures from other users,comments,likes etc */
+.app-landing-page{
+    width: 70%;
+    margin: 0 auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

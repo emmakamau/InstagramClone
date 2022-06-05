@@ -1,4 +1,42 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="">
+    <div class="row app-landing-page d-flex justify-content-center">
+        <div class="homepage-posts-display">
+            {% for post in all_posts %}
+            <div class="card mt-2" style="width: 36rem;">
+                <h5 class="card-title m-0">
+                    <div class="row p-1">
+                        <div class="col-md-2">
+                            <p>
+                                <img src="{{post.image_owner.prof_pic.url}}" class="prof_pic comment-img" alt=""
+                                    srcset="">
+                            </p>
+                        </div>
+                        <div class="col-md-10">
+                            <small class="font-weight-bold">
+                                <a href="{% url 'profile' post.image_owner.user.username %}" class="app-links">
+                                    {{post.image_owner.user.username}}
+                            </a></small>
+                        </div>
+                    </div>
+                </h5>
+                <img class="card-img-top" src="{{post.image_upload.url}}" alt="Card image cap">
+                <div class="card-body">
+                    <div class="comment-display-homepage">
+                        <p>
+                            <span class="font-weight-bold">{{post.image_owner.user.username}}</span>
+                            <span>{{post.image_caption}}</span>
+                        </p>
+                    </div>
+                    <div class="post-add-comment-form">
+                        <p>Comment form goes here</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 {% endblock %}

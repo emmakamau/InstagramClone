@@ -47,8 +47,13 @@ def logoutuser(request):
 
 #@login_required(login_url='login')
 def homepage(request):
+    all_posts = Post.objects.all()
+    post_comments = Comment.objects.all()
 
-    context={}
+    context={
+        'all_posts':all_posts,
+        'post_comments':post_comments
+    }
     return render(request,'index.html',context=context)
 
 #@login_required(login_url='login')
@@ -58,9 +63,6 @@ def profile(request,username):
 
     user_posts = Post.objects.filter(image_owner=user_name.id)
     post_comments = Comment.objects.all()
-    # for post in user_posts:
-    #     post_comments = Comment.objects.filter(post_associated=post.id)
-    #     print(post_comments)
     
     context={
         'user_name':user_name,
