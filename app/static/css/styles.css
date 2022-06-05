@@ -243,6 +243,10 @@ body{
         .post-add-comment-form{
             height: 20%;
         }
+        .delete-comment-btn{
+            height: 40%;
+            width: 40%;
+        }
     .post-header-img{
         height:7%;
         width:10%;

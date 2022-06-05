@@ -118,8 +118,18 @@ def profile_update(request,username):
     }
     return render(request,'profile_update.html',context=context)
 
+
+
+
 def delete_post(request,username,post_id):
     post_to_delete = Post.objects.get(id=post_id)
     post_to_delete.delete_post(post_id)
+
+    return redirect('profile',username=username)
+
+def delete_comment(request,username,comment_id):
+    print(comment_id)
+    comment_to_delete = Comment.objects.get(id=comment_id)
+    comment_to_delete.delete_comment(comment_id)
 
     return redirect('profile',username=username)

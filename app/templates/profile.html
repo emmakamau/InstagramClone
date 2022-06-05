@@ -41,7 +41,8 @@
             <!-- Modal display -->
             <div class="modal fade" id="{{ post.image_name }}" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                <br><br>
+                <button type="button" class="btn-close float-right mr-3" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -58,7 +59,8 @@
                                                 alt="" srcset="">
                                             <span class="font-weight-bold">{{user_name.username}}</span>
                                             <span class="btn btn-light float-right">
-                                                <a href="{% url 'delete_post' user_profile.user.username user_profile.id %}" class="app-links">Delete</a>
+                                                <a href="{% url 'delete_post' user_profile.user.username user_profile.id %}"
+                                                    class="app-links">Delete</a>
                                             </span>
                                         </p>
                                     </div>
@@ -88,10 +90,20 @@
                                                             class="prof_pic comment-img" alt="" srcset="">
                                                     </p>
                                                 </div>
-                                                <div class="col-md-10">
+                                                <div class="col-md-8">
                                                     <span class="font-weight-bold">{{comment.user.username}}</span>
                                                     <p>{{comment.user_comment}}</p>
                                                 </div>
+                                                {% if user.id == post.image_owner.user.id %}
+                                                <div class="col-md-2">
+                                                    {% load static %}
+                                                    <p>{{post.owner_image.user.id}}</p>
+                                                    <a href="{% url 'delete_comment' user.username comment.id %}">
+                                                        <img src="{% static 'css/assets/delete-button-svgrepo-com.svg' %}"
+                                                            class="delete-comment-btn" title="Delete Comment">
+                                                    </a>
+                                                </div>
+                                                {% endif %}
                                             </div>
                                             {% endif %}
                                             {% endfor %}
