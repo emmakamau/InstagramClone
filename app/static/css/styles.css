@@ -201,16 +201,31 @@ body{
         width: 100%;
     }
     .modal-display-next{
+        max-height: 80vh;
+        min-height: 80vh;
+    }
+    .post-comment-col{
         height: 100%;
     }
     .user-post-img-modal{
         height: 100%;
         width: 100%;
     }
-    .post-header{
-        padding: 0.5vh;
-        border-bottom:1px solid #DCDCDC;
-    }
+        /* Comment section/column of modal */
+        .post-header{
+            margin: 1vh;
+            border-bottom:1px solid #DCDCDC;
+            height: 10%;
+        }
+        .comment-section-display{
+            height: 70%;
+            width: 100%;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+        .post-add-comment-form{
+            height: 20%;
+        }
     .post-header-img{
         height:7%;
         width:10%;

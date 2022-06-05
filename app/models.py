@@ -13,7 +13,9 @@ RESTRICT causes the attempted DELETE of a parent row to fail.
 class Profile(models.Model):
     user = models.OneToOneField(User,null=True,on_delete=models.CASCADE)
     prof_pic = models.ImageField(blank=True, upload_to='media')
-    bio = models.CharField(blank=True, max_length=255)
+    bio = models.TextField(blank=True, max_length=255)
+    website = models.URLField(blank=True, max_length=50)
+    name = models.CharField(blank=True,max_length=50)
 
     def __str__(self):
         return self.bio
@@ -21,16 +23,16 @@ class Profile(models.Model):
 class Post(models.Model):
     image_upload = models.ImageField(upload_to='media',blank=False)
     image_name = models.CharField(max_length=50,blank=True)
-    image_caption = models.TextField(max_length=500,blank=True)
+    image_caption = models.TextField(max_length=255,blank=True)
     image_owner = models.ForeignKey(Profile,null=True,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.image_name
 
 class Comment(models.Model):
-    user = models.OneToOneField(User,null=True,on_delete=models.CASCADE)
+    user = models.ForeignKey(User,null=True,on_delete=models.CASCADE)
     user_profile = models.ForeignKey(Profile,null=True,on_delete=models.CASCADE)
-    user_comment = models.CharField(blank=False, max_length=255)
+    user_comment = models.TextField(blank=False, max_length=255)
     post_associated = models.ForeignKey(Post,null=True,on_delete=models.CASCADE)
 
     def __str__(self):

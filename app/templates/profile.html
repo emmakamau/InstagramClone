@@ -17,7 +17,12 @@
                     {{user_name.username}}
                     <span class="btn btn-light">Edit Profile</span>
                 </h4>
+
+                <p class="font-weight-bold">{{user_profile.name}}</p>
                 <p>{{user_profile.bio}}</p>
+                {% if user_profile.website %}
+                <p>{{user_profile.website}}</p>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -42,7 +47,7 @@
                                     <img class="user-post-img-modal" src="{{post.image_upload.url}}"
                                         alt="Card image cap">
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 post-comment-col">
                                     <div class="post-header">
                                         <p>
                                             <img src="{{user_profile.prof_pic.url}}" class="prof_pic post-header-img"
@@ -51,35 +56,42 @@
                                         </p>
                                     </div>
                                     <br>
-                                    <div class="post-caption-owner">
-                                        <div class="row">
-                                            <div class="col-md-2">
-                                                <p>
-                                                    <img src="{{user_profile.prof_pic.url}}"
-                                                        class="prof_pic comment-img" alt="" srcset="">
-                                                </p>
+                                    <div class="comment-section-display">
+                                        <div class="post-caption-owner">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <p>
+                                                        <img src="{{user_profile.prof_pic.url}}"
+                                                            class="prof_pic comment-img" alt="" srcset="">
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-10">
+                                                    <span class="font-weight-bold">{{user_name.username}}</span>
+                                                    <p>{{post.image_caption}}</p>
+                                                </div>
                                             </div>
-                                            <div class="col-md-10">
-                                                <span class="font-weight-bold">{{user_name.username}}</span>
-                                                <p>{{post.image_caption}}</p>
+                                        </div>
+                                        <div class="post-comment-others">
+                                            {% for comment in post_comments %}
+                                            {% if post.image_name|lower == comment.post_associated|lower %}
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <p>
+                                                        <img src="{{comment.user_profile.prof_pic.url}}"
+                                                            class="prof_pic comment-img" alt="" srcset="">
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-10">
+                                                    <span class="font-weight-bold">{{comment.user.username}}</span>
+                                                    <p>{{comment.user_comment}}</p>
+                                                </div>
                                             </div>
+                                            {% endif %}
+                                            {% endfor %}
                                         </div>
                                     </div>
-                                    <div class="post-comment-others">
-                                        {% for comment in post_comments %}
-                                        <div class="row">
-                                            <div class="col-md-2">
-                                                <p>
-                                                    <img src="{{comment.user_profile.prof_pic.url}}"
-                                                        class="prof_pic comment-img" alt="" srcset="">
-                                                </p>
-                                            </div>
-                                            <div class="col-md-10">
-                                                <span class="font-weight-bold">{{comment.user.username}}</span>
-                                                <p>{{comment.user_comment}}</p>
-                                            </div>
-                                        </div>
-                                        {% endfor %}
+                                    <div class="post-add-comment-form">
+                                        <p>Comment form goes here</p>
                                     </div>
                                 </div>
                             </div>
