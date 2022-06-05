@@ -52,6 +52,25 @@ def homepage(request):
 
     comment_form = CommentForm()
 
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            post_associated_id = request.POST.get('post_associated')
+
+            user = request.user
+            user_profile = Profile.objects.get(user=user.id)
+            post_associated = Post.objects.get(id=post_associated_id)
+            user_comment = comment_form.cleaned_data['user_comment']
+
+            comment = Comment(
+                user=user,
+                user_profile=user_profile,
+                user_comment=user_comment,
+                post_associated=post_associated
+                )
+            comment.save()
+            return redirect('homepage')
+
     context={
         'all_posts':all_posts,
         'post_comments':post_comments,

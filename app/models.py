@@ -38,6 +38,9 @@ class Comment(models.Model):
     def __str__(self):
         return self.user_comment
 
+    def save_comment(self):
+        self.save()
+
 class PostVote(models.Model):
     vote = models.IntegerField()
     user_vote = models.OneToOneField(User,null=True,on_delete=models.CASCADE)

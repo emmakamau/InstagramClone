@@ -43,12 +43,13 @@
                         </div>
                     </div>
                     <div class="post-add-comment-form">
-                        <form action="" method="post">
+                        <form action="" method="post" name="comment-form">
                             {% csrf_token %}
                             <div class="input-group mb-3">
                                 <div class="input-group">
                                     {{comment_form.user_comment}}
-                                    <button class="btn btn-light search" id="button-addon2" type="submit">
+                                    <input hidden type="text" value="{{post.id}}" name="post_associated">
+                                    <button class="btn btn-light search" onclick="resetForm()" id="button-addon2" type="submit">
                                         Post
                                     </button>
                                 </div>
