@@ -57,6 +57,9 @@
                                             <img src="{{user_profile.prof_pic.url}}" class="prof_pic post-header-img"
                                                 alt="" srcset="">
                                             <span class="font-weight-bold">{{user_name.username}}</span>
+                                            <span class="btn btn-light float-right">
+                                                <a href="{% url 'delete_post' user_profile.user.username user_profile.id %}" class="app-links">Delete</a>
+                                            </span>
                                         </p>
                                     </div>
                                     <br>

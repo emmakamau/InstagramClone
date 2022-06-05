@@ -118,9 +118,8 @@ def profile_update(request,username):
     }
     return render(request,'profile_update.html',context=context)
 
+def delete_post(request,username,post_id):
+    post_to_delete = Post.objects.get(id=post_id)
+    post_to_delete.delete_post(post_id)
 
-
-# class ProfileUpdateView(UpdateView):
-#     model = Profile
-#     form_class = ProfileUpdateForm
-#     success_url ="/"
+    return redirect('profile',username=username)

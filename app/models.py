@@ -29,6 +29,16 @@ class Post(models.Model):
     def __str__(self):
         return self.image_name
 
+    def save_post(self):
+        '''Add Post to database'''
+        self.save()
+
+    @classmethod
+    def delete_post(cls,id):
+        ''' Delete post from database '''
+        post = Post.objects.get(id=id)
+        post.delete()
+
 class Comment(models.Model):
     user = models.ForeignKey(User,null=True,on_delete=models.CASCADE)
     user_profile = models.ForeignKey(Profile,null=True,on_delete=models.CASCADE)
@@ -39,7 +49,14 @@ class Comment(models.Model):
         return self.user_comment
 
     def save_comment(self):
+        '''Add Comment to database'''
         self.save()
+
+    @classmethod
+    def delete_comment(cls,id):
+        ''' Delete comment from database '''
+        comment = Comment.objects.get(id=id)
+        comment.delete()
 
 class PostVote(models.Model):
     vote = models.IntegerField()
