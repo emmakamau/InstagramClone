@@ -10,6 +10,7 @@ urlpatterns=[
 
     path('<str:username>/', views.profile, name='profile'),
     path('profile_update/<str:username>/',views.profile_update,name='profile_update'),
+    path('post_update/<str:username>/',views.post_update,name='post_update'),
 
     path('<str:username>/delete/<int:post_id>/',views.delete_post,name='delete_post'),
     path('<str:username>/delete/<int:comment_id>/',views.delete_comment,name='delete_comment'),

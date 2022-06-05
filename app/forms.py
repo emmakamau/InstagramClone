@@ -31,6 +31,15 @@ class ProfileUpdateForm(ModelForm):
             super(ProfileUpdateForm, self).__init__(*args, **kwargs)
             self.helper = FormHelper()
 
+class PostUpdateForm(ModelForm):
+    class Meta:
+        model = Post
+        fields = ['image_upload','image_name','image_caption']
+
+        def __init__(self, *args, **kwargs):
+            super(PostUpdateForm, self).__init__(*args, **kwargs)
+            self.helper = FormHelper()
+
         
 
 
