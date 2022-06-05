@@ -1,9 +1,13 @@
+from multiprocessing import context
 from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .decorators import *
 from .forms import *
 from django.contrib.auth import authenticate, login, logout
+
+from django.views.generic.edit import UpdateView
+from django.views.generic import DetailView
 
 # Create your views here.
 # @unauthenticated_user
@@ -93,3 +97,30 @@ def profile(request,username):
         'post_comments':post_comments
     }
     return render(request,'profile.html',context=context)
+
+def profile_update(request,username):
+    user_name = User.objects.get(username=username)
+    user_profile = Profile.objects.get(user=user_name.id)
+
+    data = get_object_or_404(Profile, id=user_profile.id)
+    profile_form = ProfileUpdateForm(instance=data)
+
+    if request.method == "POST":
+        profile_form = ProfileUpdateForm(request.POST, instance=data)
+        if profile_form.is_valid():
+            profile_form.save()
+            return redirect ('profile_update', username=user_name)
+
+    context={
+        'user_name':user_name,
+        'profile_form':profile_form,
+        'user_profile':user_profile
+    }
+    return render(request,'profile_update.html',context=context)
+
+
+
+# class ProfileUpdateView(UpdateView):
+#     model = Profile
+#     form_class = ProfileUpdateForm
+#     success_url ="/"

@@ -1,5 +1,7 @@
-from django.forms import ModelForm, TextInput
+from django.forms import ModelForm,TextInput
+from django import forms
 from .models import *
+from crispy_forms.helper import FormHelper
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
@@ -19,3 +21,18 @@ class CommentForm(ModelForm):
                 'placeholder': 'Comment'
                 })
             }
+
+class ProfileUpdateForm(ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['prof_pic','bio','website','name']
+
+        def __init__(self, *args, **kwargs):
+            super(ProfileUpdateForm, self).__init__(*args, **kwargs)
+            self.helper = FormHelper()
+
+        
+
+
+
+
