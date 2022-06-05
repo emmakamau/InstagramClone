@@ -1,17 +1,93 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="user-profile-display">
-    <div class="row">
-        <div class="col-md-6">
+<div class="">
+    <br>
+    <!-- About user -->
+    <div class="row user-profile-display">
+        <div class="col-md-6 profile_section_one">
             {% if user_profile.prof_pic %}
-            <img src="{{user_profile.prof_pic.url}}" class="prof_pic" alt="" srcset="">
+            <img src="{{user_profile.prof_pic.url}}" class="prof_pic ig-image-accounts" alt="" srcset="">
             {% else %}
             <p>No Prof pic available</p>
             {% endif %}
         </div>
         <div class="col-md-6">
-            <h3>{{user_profile.bio}}<span class="btn btn-light">Edit Profile</span></h3>
+            <div class="profile_section_two">
+                <h4 class="font-weight-bold">
+                    {{user_name.username}}
+                    <span class="btn btn-light">Edit Profile</span>
+                </h4>
+                <p>{{user_profile.bio}}</p>
+            </div>
         </div>
     </div>
-</div>
-{% endblock %}
+    <br>
+    <!-- Post display by user -->
+    <div class="user-posts-display">
+        <div class="row user-posts d-flex justify-content-center">
+            {% for post in user_posts %}
+            <button type="button" class="btn image-btn" data-bs-toggle="modal" data-bs-target="#{{ post.image_name }}">
+                <img src="{{post.image_upload.url}}" alt="" class="user-post-img">
+            </button>
+            <!-- Modal display -->
+            <div class="modal fade" id="{{ post.image_name }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="row modal-display-next">
+                                <div class="col-md-6">
+                                    <img class="user-post-img-modal" src="{{post.image_upload.url}}"
+                                        alt="Card image cap">
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="post-header">
+                                        <p>
+                                            <img src="{{user_profile.prof_pic.url}}" class="prof_pic post-header-img"
+                                                alt="" srcset="">
+                                            <span class="font-weight-bold">{{user_name.username}}</span>
+                                        </p>
+                                    </div>
+                                    <br>
+                                    <div class="post-caption-owner">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <p>
+                                                    <img src="{{user_profile.prof_pic.url}}"
+                                                        class="prof_pic comment-img" alt="" srcset="">
+                                                </p>
+                                            </div>
+                                            <div class="col-md-10">
+                                                <span class="font-weight-bold">{{user_name.username}}</span>
+                                                <p>{{post.image_caption}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="post-comment-others">
+                                        {% for comment in post_comments %}
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <p>
+                                                    <img src="{{comment.user_profile.prof_pic.url}}"
+                                                        class="prof_pic comment-img" alt="" srcset="">
+                                                </p>
+                                            </div>
+                                            <div class="col-md-10">
+                                                <span class="font-weight-bold">{{comment.user.username}}</span>
+                                                <p>{{comment.user_comment}}</p>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endblock %}

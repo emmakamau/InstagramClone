@@ -155,9 +155,69 @@ body{
         transition: 250ms ease-in;
         width: calc(100% - 3rem);
     }
-    
-    
 
 /* Profile page - User */
+.prof_pic{
+    border-radius: 50%;
+    margin-right: 2vw;
+}
+
+.profile_section_two{
+    width: 50%;
+}
+
+.btn-light{
+    border:1px solid #DCDCDC;
+}
+
+.user-posts{
+    padding-top: 1vh;
+    margin: 0 auto;
+    border-top:1px solid #DCDCDC;
+    width: 80%;
+}
+
+.user-post-img{
+    margin: 1.5vh;
+    max-height: 40vh;
+    max-width: 22vw;
+    min-height: 40vh;
+    min-width: 22vw;
+}
+
+    /* Modal styling */
+    .modal-dialog{
+        height: 80vh;
+        width: 80%;
+        margin:0 10vw;
+    }
+    .modal-content{
+        height: 100%;
+        width: 80vw;
+    }
+    .modal-body{
+        padding: 0;
+        height: 100%;
+        width: 100%;
+    }
+    .modal-display-next{
+        height: 100%;
+    }
+    .user-post-img-modal{
+        height: 100%;
+        width: 100%;
+    }
+    .post-header{
+        padding: 0.5vh;
+        border-bottom:1px solid #DCDCDC;
+    }
+    .post-header-img{
+        height:7%;
+        width:10%;
+    }
+    .comment-img{
+        height:100%;
+        width:100%;
+    }
 
 /* Application page - Pictures from other users,comments,likes etc */

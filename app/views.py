@@ -54,12 +54,18 @@ def homepage(request):
 #@login_required(login_url='login')
 def profile(request,username):
     user_name = User.objects.get(username=username)
-    user_id = user_name.id
+    user_profile = Profile.objects.get(user=user_name.id)
 
-    user_profile = Profile.objects.get(user=user_id)
+    user_posts = Post.objects.filter(image_owner=user_name.id)
+    post_comments = Comment.objects.all()
+    # for post in user_posts:
+    #     post_comments = Comment.objects.filter(post_associated=post.id)
+    #     print(post_comments)
     
     context={
         'user_name':user_name,
-        'user_profile':user_profile
+        'user_profile':user_profile,
+        'user_posts':user_posts,
+        'post_comments':post_comments
     }
     return render(request,'profile.html',context=context)
