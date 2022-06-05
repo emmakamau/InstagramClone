@@ -27,7 +27,9 @@
 </head>
 
 <body>
+    {% if user.is_authenticated %}
     {% include "navbar.html" %}
+    {% endif %}
     {% block content %}{% endblock %}
     {% block scripts %}
     <script src="https://kit.fontawesome.com/aee799c668.js" crossorigin="anonymous"></script>

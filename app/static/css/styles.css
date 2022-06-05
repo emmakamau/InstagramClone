@@ -45,6 +45,7 @@ body{
     align-items: center;
     padding-top: 1vw;
     height: 60px;
+    background-color: white;
     border-bottom: #DCDCDC solid 1px;
   }
 
@@ -89,7 +90,7 @@ body{
 
   .search-text{
       border-radius:2%;
-      background-color:#DCDCDC;
+      background-color:#FAF9F6;
   }
 
 /* Accounts pages - login and signin */

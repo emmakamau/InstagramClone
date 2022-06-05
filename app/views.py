@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .decorators import *
@@ -6,11 +6,22 @@ from .forms import *
 from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
-# @login_required(login_url='login')
-def homepage(request):
+# @unauthenticated_user
+def signup(request):
+    form = SignUpForm()
 
-    context={}
-    return render(request,'index.html',context=context)
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+
+            messages.success(request, "Account created successfully")
+            return redirect('login')
+
+    context = {
+        'form': form,
+    }
+    return render (request, 'accounts/signup.html', context=context)
 
 #@unauthenticated_user
 def loginuser(request):
@@ -29,24 +40,26 @@ def loginuser(request):
     context = {}
     return render (request, 'accounts/login.html', context=context)
 
-# @unauthenticated_user
-def signup(request):
-    form = SignUpForm()
-
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-
-            messages.success(request, "Account created successfully")
-            return redirect('login')
-
-    context = {
-        'form': form,
-    }
-    return render (request, 'accounts/signup.html', context=context)
-
 def logoutuser(request):
 
     logout(request)
-    return render (request, 'accounts/login.html')
+    return redirect('login')
+
+#@login_required(login_url='login')
+def homepage(request):
+
+    context={}
+    return render(request,'index.html',context=context)
+
+#@login_required(login_url='login')
+def profile(request,username):
+    user_name = User.objects.get(username=username)
+    user_id = user_name.id
+
+    user_profile = Profile.objects.get(user=user_id)
+    
+    context={
+        'user_name':user_name,
+        'user_profile':user_profile
+    }
+    return render(request,'profile.html',context=context)
