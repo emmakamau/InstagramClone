@@ -181,11 +181,11 @@ body{
     border:1px solid #DCDCDC;
 }
 
-.btn-primary{
+/* .btn-primary{
     width: 60%;
     font-weight: bold;
     margin: 0 auto;
-}
+} */
 
 .user-posts{
     padding-top: 1vh;
@@ -261,13 +261,19 @@ body{
 /* Profile update page */
 .profile-update-form {
     padding: 4vh;
-    width: 50%;
+    width: 60%;
     background-color: white;
     border:1px solid #DCDCDC;
 }
 
 .prof-pic-display{
     max-height: 20%;
+}
+
+#change-photo-form{
+    display:none;
+    background-color: #DCDCDC;
+    padding: 1rem;
 }
 
 

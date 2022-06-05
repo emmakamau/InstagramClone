@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="">
-    <br>
+    <br><br><br><br>
     <!-- About user -->
     <div class="row user-profile-display">
         <div class="col-md-6 profile_section_one">
@@ -15,7 +15,11 @@
             <div class="profile_section_two">
                 <h4 class="font-weight-bold">
                     {{user_name.username}}
-                    <span class="btn btn-light">Edit Profile</span>
+                    {% if user.username == user_profile.user.username %}
+                    <a href="{% url 'profile_update' user.username %}" class="btn btn-light">
+                        Edit Profile
+                    </a>
+                    {% endif %}
                 </h4>
 
                 <p class="font-weight-bold">{{user_profile.name}}</p>

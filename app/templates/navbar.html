@@ -1,4 +1,4 @@
-<header class="main-header">
+<header class="main-header fixed-top">
     <a href="{% url 'homepage' %}" class="brand-logo">
         <h2 class="instagram-title">Instagram</h2>
     </a>
@@ -17,17 +17,17 @@
     </div>
     <nav class="main-nav">
         <ul>
-            <li class="nav-items"><a href="" >
+            <li class="nav-items"><a href="{% url 'homepage' %}" title="HomePage" >
                 {% load static %}
-                <img src="{% static 'css/assets/home-house-svgrepo-com.svg' %}" alt="" srcset="">
+                <img src="{% static 'css/assets/home-house-svgrepo-com.svg' %}" title="HomePage" alt="" srcset="">
             </a></li>
             <li class="nav-items"><a href="" >
                 {% load static %}
-                <img src="{% static 'css/assets/add-svgrepo-com.svg' %}" alt="" srcset="">
+                <img src="{% static 'css/assets/add-svgrepo-com.svg' %}" title="Create Post">
             </a></li>
             <li class="nav-items"><a href="{% url 'logout' %}">
                 {% load static %}
-                <img src="{% static 'css/assets/logout-svgrepo-com.svg' %}" alt="" srcset="">
+                <img src="{% static 'css/assets/logout-svgrepo-com.svg' %}" title="Logout">
             </a></li>
         </ul>
     </nav>

@@ -3,6 +3,7 @@
 
 {% block content %}
 <div class="">
+    <br><br><br>
     <div class="row app-landing-page d-flex justify-content-center">
         <div class="homepage-posts-display">
             {% for post in all_posts %}
@@ -49,7 +50,7 @@
                                 <div class="input-group">
                                     {{comment_form.user_comment}}
                                     <input hidden type="text" value="{{post.id}}" name="post_associated">
-                                    <button class="btn btn-light search" onclick="resetForm()" id="button-addon2" type="submit">
+                                    <button class="btn btn-light search" id="button-addon2" type="submit">
                                         Post
                                     </button>
                                 </div>
