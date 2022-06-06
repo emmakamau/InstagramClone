@@ -165,9 +165,10 @@ def profile_update(request,username):
     profile_form = ProfileUpdateForm(instance=data)
 
     if request.method == "POST":
-        profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=data)
+        profile_form = ProfileUpdateForm(request.POST,request.FILES, instance=data)
         if profile_form.is_valid():
             profile_form.save()
+            
             return redirect ('profile_update', username=user_name)
 
     context={
@@ -257,11 +258,3 @@ def like_image(request,user_id,post_id):
     new_like.save_like()
 
     return redirect('homepage')
-
-"""
-def like(request, image_id):
-    current_user = request.user
-    image=Image.objects.get(id=image_id)
-    new_like,created= Like.objects.get_or_create(liker=current_user,image=image)
-    new_like.save()
-"""
