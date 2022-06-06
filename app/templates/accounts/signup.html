@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 <div class="row accounts-page">
@@ -15,18 +16,7 @@
             <p class="text-center">Sign up to see photos and videos from your friends.</p>
             <form class="login-form" method="POST" action="">
                 {% csrf_token %}
-                <div class="accounts-username" autofocus="true" required="true" placeholder="Email" >
-                    {{ form.username }}
-                </div>
-                <div class="accounts-email" autofocus="true" required="true" placeholder="Email" >
-                    {{ form.email }}
-                </div>
-                <div class="accounts-password" required="true" placeholder="Password">
-                    {{ form.password1}}
-                </div>
-                <div class="accounts-password" required="true" placeholder="Confirm Password">
-                    {{ form.password2}}
-                </div>
+                {{form|crispy}}
                 {% for message in messages%}
                 <span class="message">{{message}}</span>
                 {% endfor %}

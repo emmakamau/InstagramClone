@@ -18,6 +18,13 @@ def signup(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
+            username = form.cleaned_data.get('username')
+
+            user_profile=Profile(
+                user=user,
+                name=username
+            )
+            user_profile.save_profile()
 
             messages.success(request, "Account created successfully")
             return redirect('login')
@@ -125,12 +132,13 @@ def post_create(request):
         post_create_form = PostCreateForm(request.POST,request.FILES)
         print(post_create_form)
         if post_create_form.is_valid():
-            print('form is valid')
+            user = request.user
+            
             image_upload = post_create_form.cleaned_data.get('image_upload')
             image_name = post_create_form.cleaned_data.get('image_name')
             image_caption  = post_create_form.cleaned_data.get('image_caption')
-            image_owner = post_create_form.cleaned_data.get('image_owner')
-    
+            image_owner = Profile.objects.get(user=user.id)
+            
             new_post = Post(
                 image_upload=image_upload,
                 image_name=image_name,

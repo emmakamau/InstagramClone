@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="">
-    <br><br><br><br>
+    <br><br><br>
     <!-- About user -->
     <div class="row user-profile-display">
         <div class="col-md-6 profile_section_one">
             {% if user_profile.prof_pic %}
             <img src="{{user_profile.prof_pic.url}}" class="prof_pic ig-image-accounts" alt="" srcset="">
             {% else %}
-            <p>No Prof pic available</p>
+            {% load static %}
+            <img src="{% static 'css/assets/avatar.png' %}" class="prof_pic ig-image-accounts" alt="" srcset="">
             {% endif %}
         </div>
         <div class="col-md-6">
@@ -58,10 +59,12 @@
                                             <img src="{{user_profile.prof_pic.url}}" class="prof_pic post-header-img"
                                                 alt="" srcset="">
                                             <span class="font-weight-bold">{{user_name.username}}</span>
+                                            {% if user.id == post.image_owner.user.id %}
                                             <span class="btn btn-light float-right">
                                                 <a href="{% url 'delete_post' user_profile.user.username user_profile.id %}"
                                                     class="app-links">Delete</a>
                                             </span>
+                                            {% endif %}
                                         </p>
                                     </div>
                                     <br>
@@ -86,8 +89,14 @@
                                             <div class="row">
                                                 <div class="col-md-2">
                                                     <p>
+                                                        {% if comment.user_profile.prof_pic %}
                                                         <img src="{{comment.user_profile.prof_pic.url}}"
                                                             class="prof_pic comment-img" alt="" srcset="">
+                                                        {% else %}
+                                                        {% load static %}
+                                                        <img src="{% static 'css/assets/avatar.png' %}"
+                                                            class="prof_pic comment-img" alt="" srcset="">
+                                                        {% endif %}
                                                     </p>
                                                 </div>
                                                 <div class="col-md-8">

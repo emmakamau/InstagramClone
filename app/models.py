@@ -3,7 +3,8 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 '''
-CASCADE will propagate the change when the parent changes. (If you delete a row, rows in constrained tables that reference that row will also be deleted, etc.)
+CASCADE will propagate the change when the parent changes. (If you delete a row, 
+rows in constrained tables that reference that row will also be deleted, etc.)
 
 SET NULL sets the column value to NULL when a parent row goes away.
 
@@ -18,7 +19,12 @@ class Profile(models.Model):
     name = models.CharField(blank=True,max_length=50)
 
     def __str__(self):
-        return self.bio
+        return self.name
+
+    def save_profile(self):
+        '''Add Profile to database'''
+        self.save()
+
 
 class Post(models.Model):
     image_upload = models.ImageField(blank=False,upload_to='media')
@@ -60,7 +66,7 @@ class Comment(models.Model):
 
 class PostVote(models.Model):
     vote = models.IntegerField()
-    user_vote = models.OneToOneField(User,null=True,on_delete=models.SET_NULL)
+    profile_vote = models.OneToOneField(Profile,null=True,on_delete=models.SET_NULL)
     post_voted = models.OneToOneField(Post,null=True,on_delete=models.SET_NULL)
 
 

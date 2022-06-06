@@ -11,7 +11,7 @@
             <p>{{post_create_form.image_name|as_crispy_field}}</p>
             <p>{{post_create_form.image_caption|as_crispy_field}}</p>
             <p>{{post_create_form.image_upload|as_crispy_field}}</p>
-            <input type="text" hidden name="image_owner" value="{{request.user}}">
+            
             <div class="text-center">
                 <button type="submit" class="btn btn-primary">Upload</button>
             </div>

@@ -4,17 +4,23 @@
 {% block content %}
 <br><br><br><br>
 <div class="d-flex justify-content-center">
-    
+
     <div class="profile-update-form mt-2">
         <form class="" method="POST">
             {% csrf_token %}
             <div class="row prof-pic-display">
                 <div class="col-md-5">
+                    {% if user_profile.prof_pic %}
                     <img src="{{user_profile.prof_pic.url}}" class="prof_pic profile-update-img" alt="" srcset="">
+                    {% else %}
+                    {% load static %}
+                    <img src="{% static 'css/assets/avatar.png' %}" class="prof_pic ig-image-accounts" alt="" srcset="">
+                    {% endif %}
                 </div>
                 <div class="col-md-7">
                     <h3 class="font-weight-bold">{{user_profile.user.username}}</h3>
-                    <span class="btn btn-light mt-2 mb-2" id="change-photo" title="Click me" onclick="displayProfilePicChange()">
+                    <span class="btn btn-light mt-2 mb-2" id="change-photo" title="Click me"
+                        onclick="displayProfilePicChange()">
                         Change Profile Photo
                     </span>
                     <div id="change-photo-form">{{profile_form.prof_pic|as_crispy_field}}</div>
