@@ -6,11 +6,8 @@ from .decorators import *
 from .forms import *
 from django.contrib.auth import authenticate, login, logout
 
-from django.views.generic.edit import UpdateView
-from django.views.generic import DetailView
-
 # Create your views here.
-# @unauthenticated_user
+@unauthenticated_user
 def signup(request):
     form = SignUpForm()
 
@@ -34,7 +31,7 @@ def signup(request):
     }
     return render (request, 'accounts/signup.html', context=context)
 
-#@unauthenticated_user
+@unauthenticated_user
 def loginuser(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -56,7 +53,7 @@ def logoutuser(request):
     logout(request)
     return redirect('login')
 
-#@login_required(login_url='login')
+@login_required(login_url='login')
 def homepage(request):
     all_posts = Post.objects.all().order_by('id').reverse()
     all_votes = PostVote.objects.all()
@@ -98,7 +95,7 @@ def search_by_username(request):
             return redirect ('profile', username=user_name)
     return render(request,'search.html')
 
-#@login_required(login_url='login')
+@login_required(login_url='login')
 def profile(request,username):
     user_name = User.objects.get(username=username)
     
@@ -137,6 +134,7 @@ def profile(request,username):
     }
     return render(request,'profile.html',context=context)
 
+@login_required(login_url='login')
 def profile_update(request,username):
     user_name = User.objects.get(username=username)
     user_profile = Profile.objects.get(user=user_name.id)
@@ -157,6 +155,7 @@ def profile_update(request,username):
     }
     return render(request,'profile_update.html',context=context)
 
+@login_required(login_url='login')
 def post_create(request):
     post_create_form = PostCreateForm()
 
@@ -185,6 +184,7 @@ def post_create(request):
     }
     return render(request,'post_create.html',context=context)
 
+@login_required(login_url='login')
 def post_update(request,username):
     user_name = User.objects.get(username=username)
     user_profile = Profile.objects.get(user=user_name.id)
@@ -205,12 +205,14 @@ def post_update(request,username):
     }
     return render(request,'post_update.html',context=context)
 
+@login_required(login_url='login')
 def delete_post(request,username,post_id):
     post_to_delete = Post.objects.get(id=post_id)
     post_to_delete.delete_post(post_id)
 
     return redirect('profile',username=username)
 
+@login_required(login_url='login')
 def delete_comment(request,username,comment_id):
     
     comment_to_delete = Comment.objects.get(id=comment_id)
@@ -218,6 +220,7 @@ def delete_comment(request,username,comment_id):
 
     return redirect('profile',username=username)
 
+@login_required(login_url='login')
 def like_image(request,user_id,post_id):
     user_profile=User.objects.get(id=user_id)
 
