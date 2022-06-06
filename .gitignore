@@ -1,5 +1,4 @@
 *.pyc
 virtual/
 *.bak
-*.sqlite3
 start.sh
