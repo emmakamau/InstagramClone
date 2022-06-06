@@ -106,7 +106,7 @@ def profile_update(request,username):
     profile_form = ProfileUpdateForm(instance=data)
 
     if request.method == "POST":
-        profile_form = ProfileUpdateForm(request.POST, instance=data)
+        profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=data)
         if profile_form.is_valid():
             profile_form.save()
             return redirect ('profile_update', username=user_name)
@@ -120,6 +120,25 @@ def profile_update(request,username):
 
 def post_create(request):
     post_create_form = PostCreateForm()
+
+    if request.method == "POST":
+        post_create_form = PostCreateForm(request.POST,request.FILES)
+        print(post_create_form)
+        if post_create_form.is_valid():
+            print('form is valid')
+            image_upload = post_create_form.cleaned_data.get('image_upload')
+            image_name = post_create_form.cleaned_data.get('image_name')
+            image_caption  = post_create_form.cleaned_data.get('image_caption')
+            image_owner = post_create_form.cleaned_data.get('image_owner')
+    
+            new_post = Post(
+                image_upload=image_upload,
+                image_name=image_name,
+                image_caption=image_caption,
+                image_owner=image_owner
+            )
+            new_post.save_post()
+            return redirect('homepage')
 
     context={
         'post_create_form':post_create_form

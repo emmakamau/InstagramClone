@@ -21,10 +21,10 @@ class Profile(models.Model):
         return self.bio
 
 class Post(models.Model):
-    image_upload = models.ImageField(upload_to='media',blank=False)
+    image_upload = models.ImageField(blank=False,upload_to='media')
     image_name = models.CharField(max_length=50,blank=True)
     image_caption = models.TextField(max_length=255,blank=True)
-    image_owner = models.ForeignKey(Profile,null=True,on_delete=models.CASCADE)
+    image_owner = models.ForeignKey(Profile,null=True,on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.image_name
@@ -41,9 +41,9 @@ class Post(models.Model):
 
 class Comment(models.Model):
     user = models.ForeignKey(User,null=True,on_delete=models.CASCADE)
-    user_profile = models.ForeignKey(Profile,null=True,on_delete=models.CASCADE)
+    user_profile = models.ForeignKey(Profile,null=True,on_delete=models.SET_NULL)
     user_comment = models.CharField(blank=False, max_length=255)
-    post_associated = models.ForeignKey(Post,null=True,on_delete=models.CASCADE)
+    post_associated = models.ForeignKey(Post,null=True,on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.user_comment
@@ -60,8 +60,8 @@ class Comment(models.Model):
 
 class PostVote(models.Model):
     vote = models.IntegerField()
-    user_vote = models.OneToOneField(User,null=True,on_delete=models.CASCADE)
-    post_voted = models.OneToOneField(Post,null=True,on_delete=models.CASCADE)
+    user_vote = models.OneToOneField(User,null=True,on_delete=models.SET_NULL)
+    post_voted = models.OneToOneField(Post,null=True,on_delete=models.SET_NULL)
 
 
     
