@@ -20,8 +20,7 @@ An IDE such as VS code with Python version 3 installed,a terminal and a browser.
 4. Pip install dependancies highlighted on the **requirements.txt** by running `pip install -r requirements.txt`
 5. Create a **start.sh** file in the root directory of the folder and define the **secret key**.
 6. Run `chmod +x start.sh` and `./start.sh` respectively on the terminal.
-7. View the application on your browser through `http://127.0.0.1:5000`.
-
+7. View the application on your browser through `http://127.0.0.1:8000`.
 
 ## Behaviour Driven Development
 

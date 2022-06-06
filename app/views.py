@@ -5,6 +5,7 @@ from django.contrib import messages
 from .decorators import *
 from .forms import *
 from django.contrib.auth import authenticate, login, logout
+from django.core.mail import send_mail,BadHeaderError
 
 # Create your views here.
 @unauthenticated_user
@@ -16,12 +17,22 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             username = form.cleaned_data.get('username')
+            email = form.cleaned_data.get('email')
 
             user_profile=Profile(
                 user=user,
                 name=username
             )
             user_profile.save_profile()
+
+            subject = 'Welcome to IG'
+            recipient_list = email
+            message = 'welcome_user.txt'
+            from_email = 'no-reply@example.com'
+            try:
+                send_mail(subject, message, from_email, [recipient_list])
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
 
             messages.success(request, "Account created successfully")
             return redirect('login')
