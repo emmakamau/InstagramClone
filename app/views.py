@@ -89,16 +89,46 @@ def homepage(request):
     }
     return render(request,'index.html',context=context)
 
+def search_by_username(request):
+    if request.method == 'POST':
+        user_name = request.POST.get('username')
+        if User.objects.filter(username=user_name):
+            return redirect ('profile', username=user_name)
+    return render(request,'search.html')
+
 #@login_required(login_url='login')
 def profile(request,username):
     user_name = User.objects.get(username=username)
+    
     user_profile = Profile.objects.get(user=user_name.id)
 
     user_posts = Post.objects.filter(image_owner=user_name.id)
     post_comments = Comment.objects.all()
+
+    comment_form = CommentForm()
+
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            post_associated_id = request.POST.get('post_associated')
+
+            user = request.user
+            user_profile = Profile.objects.get(user=user.id)
+            post_associated = Post.objects.get(id=post_associated_id)
+            user_comment = comment_form.cleaned_data['user_comment']
+
+            comment = Comment(
+                user=user,
+                user_profile=user_profile,
+                user_comment=user_comment,
+                post_associated=post_associated
+                )
+            comment.save()
+            return redirect('homepage')
     
     context={
         'user_name':user_name,
+        'comment_form':comment_form,
         'user_profile':user_profile,
         'user_posts':user_posts,
         'post_comments':post_comments
@@ -185,3 +215,4 @@ def delete_comment(request,username,comment_id):
     comment_to_delete.delete_comment(comment_id)
 
     return redirect('profile',username=username)
+

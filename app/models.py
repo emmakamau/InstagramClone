@@ -25,6 +25,12 @@ class Profile(models.Model):
         '''Add Profile to database'''
         self.save()
 
+    @classmethod
+    def get_user_by_username(cls,username):
+        '''Get a user profile given the username'''
+        user = User.objects.get(username=username)
+        user_profile = Profile.objects.get(user=user.id)
+        return user_profile
 
 class Post(models.Model):
     image_upload = models.ImageField(blank=False,upload_to='media')

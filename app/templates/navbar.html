@@ -1,13 +1,14 @@
 <header class="main-header fixed-top">
     <a href="{% url 'homepage' %}" class="brand-logo">
-        <h2 class="instagram-title">Instagram</h2>
+        <h2 class="instagram-title" title="HomePage">Instagram</h2>
     </a>
     <div>
-        <form action="/search/" method="post">
+        <form action="/search/" method="POST">
             {% csrf_token %}
             <div class="input-group mb-3">
                 <div class="input-group">
-                    <input type="text" class="form-control search-text" id="search-text" placeholder="Search">
+                    <input type="text" class="form-control search-text" required
+                        name="username" id="search-text" placeholder="Search by username">
                     <button class="btn btn-light search" id="button-addon2" type="submit">
                         <i class="fas fa-search"></i>
                     </button>
@@ -27,7 +28,7 @@
             </a></li>
             <li class="nav-items"><a href="{% url 'profile' user.username %}">
                 {% load static %}
-                <img src="{% static 'css/assets/profile-svgrepo-com.svg' %}" title="MyProfile">
+                <img src="{% static 'css/assets/profile-svgrepo-com.svg' %}" title="{{request.user}}">
             </a></li>
             <li class="nav-items"><a href="{% url 'logout' %}">
                 {% load static %}

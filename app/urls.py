@@ -8,6 +8,8 @@ urlpatterns=[
     path('signup/',views.signup,name='signup'),
     path('logout/',views.logoutuser,name='logout'),
 
+    path('search/', views.search_by_username, name='search'),
+
     path('post_create/',views.post_create,name='post_create'),
     path('post_update/<str:username>/',views.post_update,name='post_update'),
     path('<str:username>/delete/<int:post_id>/',views.delete_post,name='delete_post'),
