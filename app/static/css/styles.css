@@ -287,7 +287,10 @@ body{
     padding: 2vw;
 }
 
-
+.vote-image{
+    height: 5%;
+    width:5%;
+}
 
 
 

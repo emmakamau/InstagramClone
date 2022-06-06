@@ -56,12 +56,18 @@
                                 <div class="col-md-6 post-comment-col">
                                     <div class="post-header">
                                         <p>
+                                            {% if comment.user_profile.prof_pic %}
                                             <img src="{{user_profile.prof_pic.url}}" class="prof_pic post-header-img"
                                                 alt="" srcset="">
+                                            {% else %}
+                                            {% load static %}
+                                            <img src="{% static 'css/assets/avatar.png' %}" class="prof_pic post-header-img"
+                                                alt="" srcset="">
+                                            {% endif %}
                                             <span class="font-weight-bold">{{user_name.username}}</span>
                                             {% if user.id == post.image_owner.user.id %}
                                             <span class="btn btn-light float-right">
-                                                <a href="{% url 'delete_post' user_profile.user.username user_profile.id %}"
+                                                <a href="{% url 'delete_post' user_profile.user.username post.id %}"
                                                     class="app-links">Delete</a>
                                             </span>
                                             {% endif %}
@@ -73,8 +79,14 @@
                                             <div class="row">
                                                 <div class="col-md-2">
                                                     <p>
-                                                        <img src="{{user_profile.prof_pic.url}}"
-                                                            class="prof_pic comment-img" alt="" srcset="">
+                                                        {% if comment.user_profile.prof_pic %}
+                                                        <img src="{{user_profile.prof_pic.url}}" class="prof_pic post-header-img"
+                                                            alt="" srcset="">
+                                                        {% else %}
+                                                        {% load static %}
+                                                        <img src="{% static 'css/assets/avatar.png' %}" class="prof_pic comment-img"
+                                                            alt="" srcset="">
+                                                        {% endif %}
                                                     </p>
                                                 </div>
                                                 <div class="col-md-10">
@@ -103,7 +115,7 @@
                                                     <span class="font-weight-bold">{{comment.user.username}}</span>
                                                     <p>{{comment.user_comment}}</p>
                                                 </div>
-                                                {% if user.id == post.image_owner.user.id %}
+                                                {% if user.id == user_profile.image_owner.user.id %}
                                                 <div class="col-md-2">
                                                     {% load static %}
                                                     <p>{{post.owner_image.user.id}}</p>
@@ -124,8 +136,10 @@
                                             <div class="input-group mb-3">
                                                 <div class="input-group">
                                                     {{comment_form.user_comment}}
-                                                    <input hidden type="text" value="{{post.id}}" name="post_associated">
-                                                    <button class="btn btn-light search" id="button-addon2" type="submit">
+                                                    <input hidden type="text" value="{{post.id}}"
+                                                        name="post_associated">
+                                                    <button class="btn btn-light search" id="button-addon2"
+                                                        type="submit">
                                                         Post
                                                     </button>
                                                 </div>

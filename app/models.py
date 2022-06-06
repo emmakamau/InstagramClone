@@ -72,8 +72,8 @@ class Comment(models.Model):
 
 class PostVote(models.Model):
     vote = models.IntegerField()
-    profile_vote = models.OneToOneField(Profile,null=True,on_delete=models.SET_NULL)
-    post_voted = models.OneToOneField(Post,null=True,on_delete=models.SET_NULL)
+    profile_vote = models.ForeignKey(Profile,null=True,on_delete=models.SET_NULL)
+    post_voted = models.ForeignKey(Post,null=True,on_delete=models.SET_NULL)
 
-
-    
+    def save_like(self):
+        self.save()

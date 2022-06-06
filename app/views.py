@@ -58,7 +58,8 @@ def logoutuser(request):
 
 #@login_required(login_url='login')
 def homepage(request):
-    all_posts = Post.objects.all()
+    all_posts = Post.objects.all().order_by('id').reverse()
+    all_votes = PostVote.objects.all()
     post_comments = Comment.objects.all()
 
     comment_form = CommentForm()
@@ -85,7 +86,8 @@ def homepage(request):
     context={
         'all_posts':all_posts,
         'post_comments':post_comments,
-        'comment_form':comment_form
+        'comment_form':comment_form,
+        'all_votes':all_votes
     }
     return render(request,'index.html',context=context)
 
@@ -210,9 +212,24 @@ def delete_post(request,username,post_id):
     return redirect('profile',username=username)
 
 def delete_comment(request,username,comment_id):
-    print(comment_id)
+    
     comment_to_delete = Comment.objects.get(id=comment_id)
     comment_to_delete.delete_comment(comment_id)
 
     return redirect('profile',username=username)
 
+def like_image(request,user_id,post_id):
+    user_profile=User.objects.get(id=user_id)
+
+    post_voted = Post.objects.get(id=post_id)
+    profile_vote = Profile.objects.get(user=user_profile)
+    vote=1
+    print(post_voted,profile_vote,vote)
+    new_like = PostVote(
+        vote=vote,
+        profile_vote=profile_vote,
+        post_voted=post_voted
+    )
+    new_like.save_like()
+
+    return redirect('homepage')
