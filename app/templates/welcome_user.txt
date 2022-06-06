@@ -1,9 +1,0 @@
-Hello {{user.username}}
-
-Welcome to IG
-
-Thank you for signing up. 
-We are excited to welcome you to the family.
-
-Happy Posting.
-IG Family

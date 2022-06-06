@@ -27,7 +27,18 @@ def signup(request):
 
             subject = 'Welcome to IG'
             recipient_list = email
-            message = 'welcome_user.txt'
+            message =   '''   
+                        Hello,
+
+                        Welcome to IG
+
+                        Thank you for signing up. 
+                        We are excited to welcome you to the family.
+
+                        Happy Posting.
+                        IG Family
+                        
+                        '''
             from_email = 'no-reply@example.com'
             try:
                 send_mail(subject, message, from_email, [recipient_list])
@@ -237,13 +248,20 @@ def like_image(request,user_id,post_id):
 
     post_voted = Post.objects.get(id=post_id)
     profile_vote = Profile.objects.get(user=user_profile)
-    vote=1
-    print(post_voted,profile_vote,vote)
+
+    print(post_voted,profile_vote)
     new_like = PostVote(
-        vote=vote,
         profile_vote=profile_vote,
         post_voted=post_voted
     )
     new_like.save_like()
 
     return redirect('homepage')
+
+"""
+def like(request, image_id):
+    current_user = request.user
+    image=Image.objects.get(id=image_id)
+    new_like,created= Like.objects.get_or_create(liker=current_user,image=image)
+    new_like.save()
+"""

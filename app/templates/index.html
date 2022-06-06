@@ -38,7 +38,7 @@
                                 {% load static %}<img src="{% static 'css/assets/heart-svgrepo-com.svg' %}" class="vote-image">
                             </a></span>
                             
-                            <span class="float-right">{{votes.post_voted}} likes</span>
+                            <span class="float-right">{{ post.saved_likes }} likes</span>
                         </div>
                         <p>
                             <span class="font-weight-bold align-right">{{post.image_owner.user.username}}</span>

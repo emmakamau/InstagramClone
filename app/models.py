@@ -51,6 +51,10 @@ class Post(models.Model):
         post = Post.objects.get(id=id)
         post.delete()
 
+    @property
+    def saved_likes(self):
+        return self.likes.count()
+
 class Comment(models.Model):
     user = models.ForeignKey(User,null=True,on_delete=models.CASCADE)
     user_profile = models.ForeignKey(Profile,null=True,on_delete=models.SET_NULL)
@@ -71,9 +75,8 @@ class Comment(models.Model):
         comment.delete()
 
 class PostVote(models.Model):
-    vote = models.IntegerField()
     profile_vote = models.ForeignKey(Profile,null=True,on_delete=models.SET_NULL)
-    post_voted = models.ForeignKey(Post,null=True,on_delete=models.SET_NULL)
+    post_voted = models.ForeignKey(Post,null=True,on_delete=models.SET_NULL,related_name='likes')
 
     def save_like(self):
         self.save()
