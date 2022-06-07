@@ -18,7 +18,7 @@ An IDE such as VS code with Python version 3 installed,a terminal and a browser.
 2. Extract and open the folder on VS code or navigate to the folder on your terminal.
 3. On the terminal, create a virtual environment `python3 -m venv virtual` and activate it `source virtual/bin/activate`. NB **virtual** is the name of the environment.
 4. Pip install dependancies highlighted on the **requirements.txt** by running `pip install -r requirements.txt`
-5. Create a **start.sh** file in the root directory of the folder and define the **secret key**.
+5. Create a **start.sh** file in the root directory of the folder and define the **secret key, email configuration**.
 6. Run `chmod +x start.sh` and `./start.sh` respectively on the terminal.
 7. View the application on your browser through `http://127.0.0.1:8000`.
 
@@ -27,6 +27,7 @@ An IDE such as VS code with Python version 3 installed,a terminal and a browser.
 BDD focuses on how the user will interact with the application.
 What you will see and experience:
 1. Sign in page, enter username and password. sign up if no account is available.
+    Sign up requires a unique username, email,password. On registration, user receives an email.
 2. Once signed in, you get to view the landing page with a navbar and displayed images by all users from the latest.
 3. On the navbar:
 - Click on **Add svg icon** to create new post.
